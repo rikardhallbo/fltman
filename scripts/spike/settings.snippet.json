@@ -1,0 +1,26 @@
+{
+  "_comment": "Spike: paste this hooks block into ~/.claude/settings.json (or .claude/settings.local.json for project-only). Replace HOOK_PATH with the absolute path to scripts/spike/log-hook.sh. Async so we never block Claude Code.",
+  "hooks": {
+    "SessionStart": [
+      { "matcher": "*", "hooks": [ { "type": "command", "command": "HOOK_PATH SessionStart", "async": true } ] }
+    ],
+    "UserPromptSubmit": [
+      { "matcher": "*", "hooks": [ { "type": "command", "command": "HOOK_PATH UserPromptSubmit", "async": true } ] }
+    ],
+    "PreToolUse": [
+      { "matcher": "*", "hooks": [ { "type": "command", "command": "HOOK_PATH PreToolUse", "async": true } ] }
+    ],
+    "PostToolUse": [
+      { "matcher": "*", "hooks": [ { "type": "command", "command": "HOOK_PATH PostToolUse", "async": true } ] }
+    ],
+    "SubagentStop": [
+      { "matcher": "*", "hooks": [ { "type": "command", "command": "HOOK_PATH SubagentStop", "async": true } ] }
+    ],
+    "Stop": [
+      { "matcher": "*", "hooks": [ { "type": "command", "command": "HOOK_PATH Stop", "async": true } ] }
+    ],
+    "Notification": [
+      { "matcher": "*", "hooks": [ { "type": "command", "command": "HOOK_PATH Notification", "async": true } ] }
+    ]
+  }
+}
