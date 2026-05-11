@@ -8,11 +8,11 @@
 - Kort till medellång session (minuter till någon timme)
 - En användare, en skärm
 
-Nedan: 28 metaforer, från säkrast till galnaste.
+Nedan: 30 metaforer, från säkrast till galnaste.
 
 ---
 
-## Säkra grundkoncept (10)
+## Säkra grundkoncept (12)
 
 ### 1. Force-directed agent graph
 Klassiska noder och kantar: en cirkel per agent, linjer som pulserar när två agenter pratar. Aktiva noder växer, idle noder är dimmade. Tool calls syns som små satelliter som snurrar runt noden.
@@ -64,88 +64,118 @@ Vertikal feed där agenterna "postar" vad de gör i realtid: "ideator: skapade `
 - **Varför det kan funka**: Format alla förstår från sociala medier. Lätt att skanna, lätt att scrolla tillbaka.
 - **Varför det kan flopa**: Textigt och platt — använder inte skärmens visuella potential. Säger inget om struktur.
 
+### 11. Konstellation med faser som koncentriska ringar
+En cirkulär layout där varje fas är en ring (Research innerst, Lansering ytterst). Agenterna sitter på sin fas-ring. Aktivitet visas som ljusbågar mellan dem, oavsett ring — ger både struktur (fas) och dynamik (flöde).
+- **Varför det kan funka**: Kombinerar org-chart-tydlighet med graf-flexibilitet. Estetiskt — påminner om planetarium.
+- **Varför det kan flopa**: Vissa agenter (project-lead) hör till alla faser och blir svåra att placera. Risk för cirkulär layout-debatt utan vinst.
+
+### 12. Inbox / e-postkonversation
+Vyn är en e-postklient. Varje "thread" är en agentkonversation. Inkommande mejl plingar i realtid när en agent skickar något, oläsbart-feten markerar nya. Bilagor = levererade dokument.
+- **Varför det kan funka**: 100% bekant. Ingen ny mental modell. Bilagor som dokumentleveranser är en perfekt 1:1-mapping.
+- **Varför det kan flopa**: Inboxar är vad vi alla flyr ifrån — varför bygga ännu en? Visuellt platt. Förlorar parallellitet (alla mejl ser likadana ut).
+
 ---
 
-## Strecher (10)
+## Strecher (11)
 
-### 11. Symfoniorkester
+### 13. Symfoniorkester
 Agenterna sitter i en orkester-uppställning. Project-lead är dirigent. När en agent "spelar" lyfter den instrumentet och toner kommer ut (visuellt eller även auditivt). Olika sektioner = olika faser (stråk = research, blås = design, slagverk = bygge).
 - **Varför det kan funka**: Vacker och poetisk metafor — och *passar*, för agenter spelar olika roller i en helhet. Kan ha riktigt ljud.
 - **Varför det kan flopa**: Svår att göra utan att bli kitschig. Statisk uppställning säger lite om realtidsflöden. Mycket designarbete.
 
-### 12. Väderkarta över teamet
+### 14. Väderkarta över teamet
 Som SVT:s väderkarta men kartan är ditt agent-landskap. Aktivitet ritas som väderfronter: ett lågtryck rör sig från `market-researcher` mot `brand-strategist`. Stormar = höga aktivitetsnivåer. Soligt = idle.
 - **Varför det kan funka**: Otippad metafor som ger en *känsla* för "vart pekar arbetet just nu". Bra för intuition snarare än precision.
 - **Varför det kan flopa**: Inte exakt nog — du kan inte se *vilket* dokument som levererades. Bättre som komplement än huvudvy.
 
-### 13. Mission control / NASA-kontrollrum
+### 15. Mission control / NASA-kontrollrum
 Multiskärms-look. En huvudskärm visar "uppdraget" (vilken fas, vilken deliverable), sidoskärmar visar agent-telemetri (CPU-liknande stapeldiagram av aktivitet), och en logg-feed kör i botten. Mörkt tema, grönt och bärnstensfärgat.
 - **Varför det kan funka**: Får dig att känna dig som flygledare över ditt team. Tillåter mycket information samtidigt. Kraftfullt visuellt.
 - **Varför det kan flopa**: Risk för UI-fetisch som ser cool ut men inte hjälper förståelse. Klyscha (alla "agent observability"-verktyg gör det här).
 
-### 14. Roman/manus som skrivs ut i realtid
+### 16. Roman/manus som skrivs ut i realtid
 Hela sessionen renderas som ett pjäsmanus eller en roman: "INTERIÖR. PROJEKT-RUMMET. KVÄLL. — *project-lead vänder sig till ideator:* 'Generera 20 visualiseringskoncept.' — *ideator börjar bläddra i docs/...*". Texten skrivs ut bokstav för bokstav.
 - **Varför det kan funka**: Litterärt, känns som narrativ snarare än telemetri. Helt unikt och delningsvärt.
 - **Varför det kan flopa**: Försvinner vid hög aktivitet — du kan inte parallellt-läsa fyra trådar. Och text för ett "visuellt tilltalande" projekt är kontroversiellt.
 
-### 15. Byggarbetsplats / staden växer
+### 17. Byggarbetsplats / staden växer
 Varje agent är en byggnad som byggs våning för våning när den jobbar. Dokument som levereras = nya våningar. Tool calls = arbetare som springer fram och tillbaka. Vid slutet av sessionen har du en skyline.
 - **Varför det kan funka**: Tillfredsställande progression över tid. Slutresultatet (skylinen) är en artefakt i sig. Lekfull.
 - **Varför det kan flopa**: Lätt att bli SimCity-clown istället för informativt verktyg. Skala kan bli stökig efter en längre session.
 
-### 16. Akvarium / ekosystem
+### 18. Akvarium / ekosystem
 Agenterna är fiskar eller kreatur i ett akvarium. Storlek och simhastighet reflekterar aktivitet. När två agenter pratar simmar de bredvid varandra. Vid leverans släpper de en glödande "ägg-fil" som flyter upp.
 - **Varför det kan funka**: Lugn, levande, vacker att titta på i bakgrunden. Anti-dashboard.
 - **Varför det kan flopa**: För abstrakt — svårt att veta *vilken* fisk som är vem och vad de gör. Stannar i estetik, lämnar funktion.
 
-### 17. Subway/tunnelbanekarta
+### 19. Subway/tunnelbanekarta
 Varje agent är en linje med stationer (= deliverables, milstolpar). Ett "tåg" rör sig längs linjen när agenten arbetar. Bytespunkter är där agenter samarbetar. Bygg som Beck-map med raka 45-gradersvinklar.
 - **Varför det kan funka**: Subway-maps är geniala för att kommunicera komplex topologi enkelt. Estetiskt klassiskt. Fast struktur per agent.
 - **Varför det kan flopa**: Statiska linjer matchar inte agenternas faktiska improvisation. Kräver att stationerna är förutbestämda.
 
-### 18. Lava lamp / partikelflöden
+### 20. Lava lamp / partikelflöden
 Sömlös animerad blob där varje agent är en färgad strömning av partiklar. När agenter kommunicerar smälter deras färger temporärt. Hög aktivitet = mer rörelse, lugn = sakta seg lava.
 - **Varför det kan funka**: Skitvackert, kan köras som ambient background hela dagen. Estetiskt unikt.
 - **Varför det kan flopa**: Nästan ingen praktisk information utvinns. Bra som hjärtslag, dåligt som verktyg. Men: kanske räcker det?
 
-### 19. Kakelugn / ugn med rum
+### 21. Kakelugn / ugn med rum
 Sett ovanifrån: ett byggnadssnitt av ett hus med ett rum per agent. Du ser dem röra sig mellan rum, ljuset tänds när någon är där, rök stiger från skorstenen när det levereras något. The Sims möter status dashboard.
 - **Varför det kan funka**: Förvånansvärt fysiskt och rumsligt — ger agenter ett "hem", vilket gör dem mer karaktärsfulla. Konkret.
 - **Varför det kan flopa**: 16 rum blir trångt. Behöver karaktärsdesign per agent (mycket initialt jobb). Risk för gimmick.
 
-### 20. Tarot-spread som drar sig själv
+### 22. Tarot-spread som drar sig själv
 Sessionen ritas som en Tarot-spread där varje agents arbete avslöjas som ett kort som vänds. Korten har symboler för agentens roll (svärd = skeptic, mynt = finance-analyst, etc.).
 - **Varför det kan funka**: Mystiskt, vackert, ger en känsla av att "läsa ödet" av sin produkt. Unik atmosfär.
 - **Varför det kan flopa**: Lite för "spiritualistisk" för ett tekniskt verktyg. Kortet-vänds-en-gång passar inte iterativt arbete.
 
+### 23. Konstmuseum / galleri som fylls
+En tom galleribyggnad sett ovanifrån. Varje levererat dokument blir en tavla på väggen, hängd i rummet som motsvarar fasen. Agenterna är konstnärer som vandrar mellan rum, lägger upp nya verk, justerar varandras. Vernissage = projektet klart.
+- **Varför det kan funka**: Behandlar arbetet som *konst som ackumuleras* — passar för kreativt teamarbete. Slutresultatet är en delbar virtuell utställning.
+- **Varför det kan flopa**: Statisk yta — väggar fylls långsamt och realtidsligheten försvinner mellan leveranser. Risk för pretentiöst.
+
+### 24. Trädgård som odlas
+Varje agent är en planta i en trädgård. Aktivitet = den vattnas eller får sol. Dokumentleveranser = den blommar / bär frukt. Handoffs = pollinering mellan plantor (insekter flyger mellan dem). Sessionsslut: en blomstrande trädgård eller en torr — beroende på utfall.
+- **Varför det kan funka**: Organisk, kontemplativ, vacker. Generativ konst som hjärtslag. Avbildar tålamod och tillväxt — passande för långsamma kreativa processer.
+- **Varför det kan flopa**: För lugn — när du faktiskt vill debugga ett flöde har du noll insyn. Och: vad gör en agent när dess planta är fullvuxen?
+
 ---
 
-## Vilda kort (5)
+## Vilda kort (7)
 
-### 21. Live Mariokart-bana / agentrace
+### 25. Live Mariokart-bana / agentrace
 Det är ett race. Agenterna kör go-karts på en bana där varje "varv" är ett deliverable. De krockar, åker av banan (= fel), tar power-ups (= tool calls). Project-lead är race-marshallen som viftar med flaggor.
 - **Varför det kan funka**: Roligt! Gör monitorering till underhållning. Du kommer titta på det.
 - **Varför det kan flopa**: Racingmetaforen suggererar konkurrens mellan agenter — de samarbetar ju. Och hela tonen blir fånig.
 
-### 22. Levande partitur som komponeras
+### 26. Levande partitur som komponeras
 Sessionen ritar sig själv som ett musikaliskt partitur. Varje agent är ett instrumentstämme. Tool calls är noter, handoffs är fermat-tecken, fel är pauser. Du kan klicka för att höra partituret hittills.
-- **Varför det kan funka**: Förenar idé 11 (orkester) med konkret notation. Sparbart som artefakt. Sjukt unikt.
+- **Varför det kan funka**: Förenar idé 13 (orkester) med konkret notation. Sparbart som artefakt. Sjukt unikt.
 - **Varför det kan flopa**: Kräver komposition i realtid som faktiskt låter bra (svårt!). Notläsning är inte universell. Förmodligen mer konst än verktyg.
 
-### 23. Ouija-board
+### 27. Ouija-board
 Ett ouija-board där en planchette glider mellan agent-namnen tryckta på brädet. När en agent jobbar pekar plancheten på den. Vid handoff glider den. Bokstäver runtom används för att stava ut tool calls bokstav-för-bokstav. Pure spookiness.
 - **Varför det kan funka**: Otippat, lite obehagligt, oförglömligt. Konceptet "AI-agent som anda" är poetiskt rätt.
 - **Varför det kan flopa**: Begränsad informationstäthet — en planchette i taget, en bokstav i taget. Och möjligen smaklöst beroende på publik.
 
-### 24. Köket på en stjärnkrog
+### 28. Köket på en stjärnkrog
 Ett 3D-kök sett uppifrån. Agenter är kockar vid olika stationer (sauce, grill, dessert, pass). Dokument är talrikar som skickas mellan stationer. Project-lead är head chef som ropar order ("ORDER UP — copy för LinkedIn!"). Ljudet av ringklocka vid leverans.
 - **Varför det kan funka**: Kitchen-confidential-vibe är passande för ett kreativt team under press. Kan ha riktigt ljud (Gordon Ramsay-energi).
 - **Varför det kan flopa**: Helt fel ton för ett lugnt soloprojekt. Och svår att göra utan att bli pixelart-clown.
 
-### 25. Tamagotchi-farm av agenter
+### 29. Tamagotchi-farm av agenter
 Varje agent är en liten varelse i en burk. De blir glada (jobbar), trötta (idle länge), hungriga (väntar på input). Du måste mata, klappa, uppmuntra. Mängden känslosvar styrs av hur ofta de används.
 - **Varför det kan funka**: Skapar emotionell relation till agenterna. Förvandlar verktyget till sällskap. Mycket personligt.
 - **Varför det kan flopa**: Antropomorfiseringen kan stå i vägen för faktisk förståelse. Och: vill du ta hand om dem? Antagligen inte.
+
+### 30. Dungeons & Dragons-party
+Agenterna är ett D&D-äventyrarsällskap runt ett bord. Project-lead är dungeon master. När en agent jobbar rullar den en tärning (animerad). Tool calls är spells. Dokument är loot. Sessionen är en kampanj med XP, hit points, och boss fights (= komplexa deliverables). Initiative-ordning visas live.
+- **Varför det kan funka**: Otroligt narrativt rik metafor som faktiskt mappar väl: roller, parallellt arbete, slumpmoment, party-dynamik. Roligt att titta på.
+- **Varför det kan flopa**: Kräver att tittaren förstår D&D-koderna. Mycket designarbete (karaktärsporträtt, tärningsanimationer). Risk för cosplay-känsla.
+
+### 31. Spegelvärlden — agenterna pratar om dig istället
+Vrid på premissen. Istället för att du tittar på agenterna jobba — du ser ett rum där agenterna sitter och diskuterar *dig* och *ditt projekt*. Deras "tool calls" syns som de pekar på whiteboards med dina dokument. När de levererar något, sätter de upp det på väggen mot dig.
+- **Varför det kan funka**: Inversion av perspektivet är poetiskt och oroväckande på ett bra sätt. Du blir åskådare till ett möte som handlar om dig.
+- **Varför det kan flopa**: Bryter mot vanlig observability-logik. Kan bli olustigt på fel sätt ("AI talks behind your back"). Svårimplementerat utan att kännas låtsas.
 
 ---
 
@@ -153,8 +183,8 @@ Varje agent är en liten varelse i en burk. De blir glada (jobbar), trötta (idl
 
 Inte beslut — men de jag tycker man bör reagera på först:
 
-- **#13 Mission Control** — om vi vill ha *kraft* och insyn för debug och översikt
-- **#15 Byggarbetsplats / staden växer** — om vi vill att resultatet ska *kännas som något som byggs*
-- **#22 Levande partitur** — om vi vågar gå från verktyg till artefakt
+- **#15 Mission Control** — om vi vill ha *kraft* och insyn för debug och översikt
+- **#17 Byggarbetsplats / staden växer** — om vi vill att resultatet ska *kännas som något som byggs*
+- **#26 Levande partitur** — om vi vågar gå från verktyg till artefakt
 
-Och en outsider: **#19 Kakelugn / hus med rum** — för att den ger agenterna persona på ett sätt inget annat gör.
+Och en outsider: **#21 Kakelugn / hus med rum** — för att den ger agenterna persona på ett sätt inget annat gör.
