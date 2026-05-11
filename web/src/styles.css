@@ -1,0 +1,520 @@
+:root {
+  --bg-base: hsl(225 12% 8%);
+  --bg-surface: hsl(225 10% 12%);
+  --bg-overlay: hsl(225 10% 16%);
+  --idle-color: hsl(225 8% 38%);
+  --edge-static: hsl(225 8% 22%);
+  --text-primary: hsl(225 15% 92%);
+  --text-secondary: hsl(225 10% 65%);
+  --text-tertiary: hsl(225 8% 45%);
+  --state-error: hsl(0 85% 58%);
+  --state-waiting: hsl(45 90% 55%);
+  --state-success: hsl(140 60% 52%);
+  --state-running: hsl(225 20% 75%);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  background: var(--bg-base);
+  color: var(--text-primary);
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+code, .mono {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+}
+
+.app {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  height: 100vh;
+}
+
+.app-header {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  padding: 16px 20px;
+  border-bottom: 1px solid hsl(225 10% 14%);
+}
+
+.app-header h1 {
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+.app-header .subtitle {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--text-tertiary);
+  text-transform: lowercase;
+}
+
+.app-main {
+  position: relative;
+  overflow: hidden;
+}
+
+.workspace {
+  width: 100%;
+  height: 100%;
+}
+
+.react-flow {
+  background: var(--bg-base);
+}
+
+.react-flow__controls {
+  background: var(--bg-surface);
+  border: 1px solid hsl(225 10% 18%);
+  box-shadow: none;
+}
+
+.react-flow__controls-button {
+  background: var(--bg-surface);
+  border-bottom: 1px solid hsl(225 10% 18%);
+  color: var(--text-secondary);
+  fill: currentColor;
+}
+
+.react-flow__controls-button:hover {
+  background: var(--bg-overlay);
+}
+
+/* Agent node */
+.agent-node {
+  --accent: var(--idle-color);
+  --accent-soft: hsla(225, 8%, 38%, 0.3);
+  --ring-opacity: 0.35;
+  position: relative;
+  width: 96px;
+  height: 96px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  transition: filter 250ms ease;
+  opacity: 0.65;
+}
+
+.agent-node.active {
+  opacity: 1;
+}
+
+.agent-node.status-idle {
+  opacity: 0.55;
+}
+
+.agent-node:hover {
+  filter: brightness(1.15);
+}
+
+.agent-node.selected {
+  filter: brightness(1.2);
+}
+
+.agent-node .ring {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 1.5px solid var(--accent);
+  opacity: var(--ring-opacity);
+  transition: opacity 400ms ease, box-shadow 400ms ease;
+}
+
+.agent-node.active .ring {
+  box-shadow:
+    0 0 0 1px hsl(from var(--accent) h s l / 0.5),
+    0 0 12px hsl(from var(--accent) h s l / 0.3),
+    0 0 32px hsl(from var(--accent) h s l / 0.15);
+}
+
+.agent-node.status-failed .ring {
+  border-color: var(--state-error);
+  box-shadow: none !important;
+}
+
+.agent-node.status-failed .core {
+  background: var(--state-error);
+  color: white;
+}
+
+.agent-node.status-waiting .ring {
+  border-color: var(--state-waiting);
+  animation: pulse-ring 2s ease-in-out infinite;
+}
+
+.agent-node.status-delivered .ring {
+  border-color: var(--state-success);
+  animation: success-flash 1.2s ease-out forwards;
+}
+
+.agent-node .core {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: var(--bg-surface);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 250ms ease;
+}
+
+.agent-node .monogram {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  letter-spacing: 0.04em;
+  color: var(--accent);
+}
+
+.agent-node.active .monogram {
+  color: var(--accent);
+}
+
+.agent-node.status-idle .monogram {
+  color: var(--idle-color);
+}
+
+.agent-node .pulse {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--accent-soft) 0%, transparent 70%);
+  animation: idle-pulse 3.5s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.agent-node .badge {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 6px;
+  border-radius: 10px;
+  background: var(--bg-overlay);
+  color: var(--accent);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--accent);
+}
+
+.agent-node .label {
+  position: absolute;
+  top: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  font-size: 11px;
+  color: var(--text-secondary);
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.agent-node.active .label {
+  color: var(--text-primary);
+}
+
+.agent-node .tool-indicator {
+  position: absolute;
+  top: 118px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: var(--accent);
+  opacity: 0.85;
+}
+
+@keyframes idle-pulse {
+  0%, 100% { opacity: 0.25; }
+  50% { opacity: 0.55; }
+}
+
+@keyframes pulse-ring {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+@keyframes success-flash {
+  0% { box-shadow: 0 0 0 0 hsl(140 60% 52% / 0.6); }
+  30% { box-shadow: 0 0 20px 4px hsl(140 60% 52% / 0.4); }
+  100% { box-shadow: 0 0 0 0 hsl(140 60% 52% / 0); }
+}
+
+/* Edges */
+.react-flow__edge.animated path {
+  stroke-dasharray: 5;
+  animation: dashdraw 0.7s linear infinite;
+}
+
+@keyframes dashdraw {
+  to { stroke-dashoffset: -10; }
+}
+
+/* Agent panel */
+.agent-panel {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 380px;
+  height: 100%;
+  background: var(--bg-surface);
+  border-left: 1px solid hsl(225 10% 18%);
+  padding: 20px 24px;
+  overflow-y: auto;
+  box-shadow: -16px 0 48px hsl(0 0% 0% / 0.4);
+  animation: slide-in 220ms ease-out;
+}
+
+@keyframes slide-in {
+  from { transform: translateX(20px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+.agent-panel header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid hsl(225 10% 18%);
+  padding-bottom: 12px;
+  margin-bottom: 16px;
+}
+
+.agent-panel h2 {
+  font-size: 18px;
+  font-weight: 700;
+  margin: 0;
+  color: var(--accent);
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.agent-panel .close {
+  background: transparent;
+  border: none;
+  color: var(--text-tertiary);
+  font-size: 24px;
+  cursor: pointer;
+  line-height: 1;
+  padding: 0 4px;
+}
+
+.agent-panel .close:hover {
+  color: var(--text-primary);
+}
+
+.agent-panel .meta {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 16px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+}
+
+.agent-panel .meta .status {
+  padding: 2px 8px;
+  border-radius: 3px;
+  background: var(--bg-overlay);
+}
+
+.agent-panel .meta .status.status-running {
+  color: var(--accent);
+  background: hsl(from var(--accent) h s l / 0.1);
+  border: 1px solid hsl(from var(--accent) h s l / 0.3);
+}
+
+.agent-panel .meta .status.status-failed { color: var(--state-error); }
+.agent-panel .meta .status.status-delivered { color: var(--state-success); }
+.agent-panel .meta .status.status-waiting { color: var(--state-waiting); }
+
+.agent-panel .meta .model {
+  color: var(--text-tertiary);
+}
+
+.agent-panel section {
+  margin-bottom: 24px;
+}
+
+.agent-panel section h3 {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-tertiary);
+  margin: 0 0 8px;
+}
+
+.agent-panel section p {
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin: 0;
+  line-height: 1.55;
+}
+
+.agent-panel .tools, .agent-panel .invocations, .agent-panel .collaborators {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.agent-panel .tools li {
+  display: flex;
+  gap: 8px;
+  padding: 6px 10px;
+  background: var(--bg-overlay);
+  border-radius: 4px;
+  margin-bottom: 4px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+}
+
+.agent-panel .tools li .tool {
+  color: var(--accent);
+  font-weight: 500;
+  flex-shrink: 0;
+}
+
+.agent-panel .tools li .args {
+  color: var(--text-tertiary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.agent-panel .invocations li {
+  background: var(--bg-overlay);
+  border-radius: 4px;
+  padding: 8px 12px;
+  margin-bottom: 6px;
+  border-left: 2px solid var(--idle-color);
+}
+
+.agent-panel .invocations li.status-running { border-left-color: var(--accent); }
+.agent-panel .invocations li.status-delivered { border-left-color: var(--state-success); }
+.agent-panel .invocations li.status-failed { border-left-color: var(--state-error); }
+
+.agent-panel .invocations .row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: var(--text-tertiary);
+  margin-bottom: 4px;
+}
+
+.agent-panel .invocations .prompt {
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin: 0;
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.agent-panel .collaborators li {
+  display: inline-block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  padding: 3px 8px;
+  background: var(--bg-overlay);
+  border-radius: 3px;
+  margin: 0 4px 4px 0;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: background 150ms;
+}
+
+.agent-panel .collaborators li:hover {
+  background: hsl(225 10% 22%);
+  color: var(--text-primary);
+}
+
+.agent-panel .toollist {
+  display: block;
+  font-size: 11px;
+  color: var(--text-tertiary);
+  background: var(--bg-overlay);
+  padding: 6px 10px;
+  border-radius: 4px;
+  word-break: break-word;
+}
+
+/* Status bar */
+.status-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 20px;
+  border-top: 1px solid hsl(225 10% 14%);
+  background: var(--bg-surface);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--text-tertiary);
+}
+
+.status-bar .left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.status-bar .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--text-tertiary);
+}
+
+.status-bar .dot.conn-open {
+  background: var(--state-success);
+  box-shadow: 0 0 8px hsl(140 60% 52% / 0.5);
+  animation: pulse-ring 2s ease-in-out infinite;
+}
+
+.status-bar .dot.conn-open.stale {
+  background: var(--state-waiting);
+  box-shadow: none;
+  animation: none;
+}
+
+.status-bar .dot.conn-closed {
+  background: var(--state-error);
+  animation: none;
+}
+
+.status-bar .status-text {
+  color: var(--text-secondary);
+}
+
+.status-bar .session-info,
+.status-bar .agents-info {
+  color: var(--text-tertiary);
+}
