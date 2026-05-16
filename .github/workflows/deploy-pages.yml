@@ -3,7 +3,7 @@ name: Deploy dashboard to GitHub Pages
 on:
   push:
     branches:
-      - claude/alamena-smart-dashboard-7OiNI
+      - main
   workflow_dispatch:
 
 permissions:
